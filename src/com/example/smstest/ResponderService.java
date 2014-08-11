@@ -28,10 +28,12 @@ public class ResponderService extends Service {
     
 
     String requester;
-    String reply="";
+    String reply="blank txt";
     String rawText;
     SharedPreferences myprefs;
-    
+    String body="";
+    String shanniceNum="8948390"; //8948390
+    Boolean isShannice=false;
     // receiver is an member object but not a function, the part underneath that looks like 
     //a function is just an anonymous extension or implementation of the BroadcastReceiver class
     BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -54,11 +56,48 @@ public class ResponderService extends Service {
                     }
                     for(SmsMessage message: messages) { // for (int item : arrayOfNumbers)  -> where item refers to the item in that indice in array
                         requestReceived(message.getOriginatingAddress());
-                        reply = message.getMessageBody(); // echo back msg from sender ... okay it worked
-                        rawText = message.getMessageBody(); 
+                        body = message.getMessageBody();
+                        body = body.replaceAll("\\s", ""); // remove all spaces 
+                       //problem isolate: long reply strings are badd, but why?
+                        
+                        //body.contains("Shannice")||body.contains("shannice")) &&
+                        if ( requester.contains(shanniceNum) && isShannice==false ) {
+                        	reply="Hello .. this is a robot. Human mel's learning how to drive. Ah the clue: Instant Noodle _____ . Text me the answer OR 'Hint1'";
+                        	isShannice=true;
+                        	//"qweoriuqwpoeiruqwoiurqwoiu  rpowwwwwwwww wwwwwwwwww wwwwwwwwwwwwwwwww wwwwwwwwwwwwwww  wwwurpqowieurwoi  rupo  qwuroweiurpoqwurewer  qwer qwerqwerqwreqwerqw0uroqwereqwrqpowurepowiurpoieuropqiurowureopqurepoqiuerpoiwueropiuewropiuewpouropwuerpoiuewroiwueoriuqwpoireuqpowiurpoqwureqoeiurpqoiurepoqiurpqoieuropqieuropqiureopqiurepoiqeeur qwoieur opqieuropiqure opqiue opiu oiue opiu qe";
+                        	//"Hello my favourite stalker ... this is a robot. I'm in driving class ( careful out there I might be on the road ;) \n I see your sleuthing skills are quite adeuqate. You mustn't disappoint now. \n Clue: Instant Noodle __________ \n  If stuck text me 'Hint1', otherwise text me your answer and I'll verify it.  ";
+                            respond();
+                            return ;
+                        }
+                        else if (body.contains("Hint1") && isShannice==true) {
+                        	reply="1)It has four letters. \n Instant noodle _ _ _ _. Text me the answer OR 'Hint2";//\n Wanna another hint ? ( or if you like talking to robot Mel) Text me 'Hint2' \n \n When you've figured it out text me your answer and I'll verify it :)  ";
+                            respond(); 
+                            return ; 
+                        }	
+                        else if (body.contains("Hint2")&& isShannice==true){
+                        	reply=" 2)I stole this lovely phrase from Fayy. It starts with the letter 'H'. Text me the answer OR 'Hint3.";//\n Anyhow onto 2)It starts with the letter 'H'. \n I doubt you're stuck... but if you want text me 'Hint3'\n \n When you've figured it out text me your answer and I'll verify it!!";
+                        	respond();
+                        	return ;
+                        }
+                        else if (body.contains("Hint3")&& isShannice==true){
+                        	reply="Last hint, its last letter is 'R'.'Instant noodle H _ _ R. Text me the answer!'";
+                        			//\n  \n When you've figured it out text me your answer and I'll verify it!!";   
+                        	respond();
+                        	return ;
+                        }
+                        else if ((body.contains("Hair")||body.contains("hair")||body.contains("HAIR"))&& isShannice==true ){
+                        	reply="Correct! Happy birthday !!  and thank you for chatting with roboMel"+ requester;   
+                        	respond();
+                        	return ;
+                        }
+                        else  
+                        	reply = "whatevs";
+                       // "clue1: instant noodle \n  Text  'Hint1' for another hint if you need it"
+                       // reply = message.getMessageBody(); // echo back msg from sender ... okay it worked
+                       // rawText = message.getMessageBody(); 
          // ***** TODO: do the parsing here      
                         
-                        respond(); // moved here (2)
+
                     }
                     //respond();//orignally placed here (1)
                       
@@ -93,6 +132,7 @@ public class ResponderService extends Service {
 
     public void respond() {
         Log.v("ResponderService","Responding to " + requester);
+        
         //reply = myprefs.getString("reply",
         //                   "Thank you for your message. I am busy now."
         //                   + "I will call you later.");

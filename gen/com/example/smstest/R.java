@@ -32,7 +32,6 @@ public final class R {
     public static final class id {
         public static final int Amount_fill=0x7f090003;
         public static final int Amount_txt=0x7f090002;
-        public static final int Contact_fill=0x7f09000a;
         public static final int Contact_txt=0x7f090009;
         public static final int DateMny_butn=0x7f090007;
         public static final int Date_fill=0x7f090008;
@@ -40,27 +39,35 @@ public final class R {
         public static final int Desc_fill=0x7f090005;
         public static final int Desc_txt=0x7f090004;
         public static final int SideGreeting=0x7f090000;
-        public static final int TextTask=0x7f09000f;
-        public static final int action_settings=0x7f090012;
-        public static final int edit_message=0x7f09000b;
-        public static final int listen_butn=0x7f09000d;
-        public static final int msg_butn=0x7f09000c;
-        public static final int p_spinner=0x7f090011;
-        public static final int t_spinner=0x7f090010;
-        public static final int text=0x7f09000e;
+        public static final int TextTask=0x7f090011;
+        public static final int action_settings=0x7f090016;
+        public static final int autocompleteCountry=0x7f09000b;
+        public static final int btn_SendReq=0x7f09000a;
+        public static final int edit_message=0x7f09000d;
+        public static final int listen_butn=0x7f09000f;
+        public static final int ll_SingleContactMain=0x7f090014;
+        public static final int msg_butn=0x7f09000e;
+        public static final int num_spinner=0x7f09000c;
+        public static final int p_spinner=0x7f090013;
+        public static final int t_spinner=0x7f090012;
+        public static final int text=0x7f090010;
+        public static final int tv_ContactName=0x7f090015;
         public static final int uAre_txt=0x7f090001;
     }
     public static final class layout {
         public static final int activity_money=0x7f030000;
         public static final int activity_money_list=0x7f030001;
         public static final int activity_start=0x7f030002;
+        public static final int list_item=0x7f030003;
     }
     public static final class menu {
-        public static final int money=0x7f080000;
-        public static final int money_list=0x7f080001;
-        public static final int start=0x7f080002;
+        public static final int contacts_list=0x7f080000;
+        public static final int money=0x7f080001;
+        public static final int money_list=0x7f080002;
+        public static final int start=0x7f080003;
     }
     public static final class string {
+        public static final int COUNTRY_LABEL=0x7f05000a;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int button_listen=0x7f050005;
@@ -70,8 +77,9 @@ public final class R {
         public static final int sideGreet=0x7f050009;
         public static final int spin_Req=0x7f050006;
         public static final int spin_Side=0x7f050007;
-        public static final int title_activity_money=0x7f05000a;
-        public static final int title_activity_money_list=0x7f05000b;
+        public static final int title_activity_contacts_list_fragment=0x7f05000d;
+        public static final int title_activity_money=0x7f05000b;
+        public static final int title_activity_money_list=0x7f05000c;
         public static final int welcomeMoney=0x7f050008;
     }
     public static final class style {
