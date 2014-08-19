@@ -39,7 +39,7 @@ public class MoneyActivity extends Activity {
 
 	public TextView contactSrchRes;
 	//public TextView outputText;
-	public Spinner numSpinner;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
