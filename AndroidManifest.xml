@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -43,6 +44,14 @@
         <activity
             android:name="com.example.smstest.MoneyListActivity"
             android:label="@string/title_activity_money_list" >
+        </activity>
+        <activity
+            android:name="com.example.smstest.ContactsListFragment"
+            android:label="@string/title_activity_contacts_list_fragment" >
+        </activity>
+        <activity
+            android:name="com.example.smstest.MoneyReqsActivity"
+            android:label="@string/title_activity_money_reqs" >
         </activity>
     </application>
 

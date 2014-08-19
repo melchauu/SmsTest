@@ -11,6 +11,7 @@
     <string name="spin_Side">Pick a side!</string>
     <string name="welcomeMoney"> hello there! We have here a monetary transaction going on!</string>
     <string name="sideGreet"> I see you\'re the ...  </string>
+    <string name="COUNTRY_LABEL"> Country   </string>
 
     <string-array name="tasks_array">
         <item>Select Task</item>
@@ -25,5 +26,7 @@
 
     <string name="title_activity_money">MoneyActivity</string>
     <string name="title_activity_money_list">MoneyListActivity</string>
+    <string name="title_activity_contacts_list_fragment">ContactsListFragment</string>
+    <string name="title_activity_money_reqs">MainActivity</string>
 
 </resources>

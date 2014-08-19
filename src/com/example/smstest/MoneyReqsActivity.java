@@ -10,16 +10,16 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class MoneyListActivity extends Activity {
+public class MoneyReqsActivity extends Activity {
 
-	@Override
+	@Override	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		
-		Intent intent = getIntent();
+// look up LIMIt in sqllite /sql lite query  http://www.tutorialspoint.com/sqlite/sqlite_limit_clause.htm
+		//http://stackoverflow.com/questions/2497677/using-the-limit-statement-in-a-sqlite-query
 
-		
 		ScrollView sv = new ScrollView(this);		
 		LinearLayout ll = new LinearLayout(this);
 		ll.setOrientation(LinearLayout.VERTICAL);
@@ -33,21 +33,22 @@ public class MoneyListActivity extends Activity {
 		b.setText("I don't do anything, but I was added dynamically. :)");
 		ll.addView(b);
 
-		//if (whoru.equals("Requestor"))		
+			
 			for(int i = 0; i < 20; i++) {
 				    CheckBox cb = new CheckBox(this);
 				    cb.setText("I'm dynamic!");
 				    ll.addView(cb);
-			}
+				}
 
 		
 		this.setContentView(sv);
 	}
 
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.money_list, menu);
+		getMenuInflater().inflate(R.menu.money_reqs, menu);
 		return true;
 	}
 
