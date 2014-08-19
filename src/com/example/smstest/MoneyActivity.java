@@ -11,25 +11,35 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+
 import android.widget.*;
+
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
+
 import java.math.BigDecimal;
 import java.util.*;
+
 
 
 public class MoneyActivity extends Activity {
 
 	public AutoCompleteTextView actv; 
+
 	public Spinner numSpinner;
 	public EditText AmountElmt;
 	public EditText DescElmt;
 	public TextView DateElmt;
 	
 	public String transSide;
+
+
+	public TextView contactSrchRes;
+	//public TextView outputText;
+	public Spinner numSpinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +69,9 @@ public class MoneyActivity extends Activity {
 		
 		 //outputText = (TextView) findViewById(R.id.Contact_SrchRes); 
 		
+
 		 actv = (AutoCompleteTextView) findViewById(R.id.autocompleteContact);
+
 		 ArrayAdapter<String> autotv_adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_item, R.id.tv_ContactName, getAllContactsList()); 
 		 
 		 actv.setAdapter(autotv_adapter);
@@ -232,6 +244,7 @@ public class MoneyActivity extends Activity {
 		                    
 		                    Cursor phoneCursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null, exactSelection, null, null);
 
+
 		                    while (phoneCursor.moveToNext()) {
 		                        phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER));
 		                        
@@ -244,6 +257,7 @@ public class MoneyActivity extends Activity {
 		                        	output.append("\n Phone number:" + "is empty");
 		                        	names.add("\n Phone number: is empty" );
 		                        }
+
 
 		                    }
 
@@ -326,6 +340,7 @@ public class MoneyActivity extends Activity {
 		    	
 		        Uri CONTACTS_CONTENT_URI = ContactsContract.Contacts.CONTENT_URI;		       	       
 
+
 		        // all these strings above  contactscontract.contacts.XXX is just an address for a row of where we expect the desired for XXX data to be
 		        
 		       ContentResolver contentResolver = getContentResolver();
@@ -342,6 +357,7 @@ public class MoneyActivity extends Activity {
 		                String name = cursor.getString(cursor.getColumnIndex( ContactsContract.Contacts.DISPLAY_NAME ));
 
 		                
+
 
 		                 
 		                    names.add( name);
@@ -394,6 +410,7 @@ public class MoneyActivity extends Activity {
 	public void sendReq(View view){
 		
 		//TODO: text the number
+
 		
 
 		// save this request into persistent data
@@ -436,6 +453,9 @@ public class MoneyActivity extends Activity {
 		// launch new activity that wil displayy all requests
 		Intent moneyReqsInt = new Intent(this, MoneyReqsActivity.class);		
 		startActivity(moneyReqsInt);
+
+	  
+
 		
 	}
 	
