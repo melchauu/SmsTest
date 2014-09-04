@@ -3,6 +3,9 @@
 
     <string name="app_name">SmsTest</string>
     <string name="action_settings">Settings</string>
+    <string name="dialog_paythis">This Request has been Paid</string>
+    <string name="dialog_yes">yes</string>
+    <string name="dialog_no">no</string>
     <string name="hello_world">Hello world!</string>
     <string name="phone_number">Recipient Number</string>
     <string name="button_send">Txt Them</string>
@@ -11,9 +14,7 @@
     <string name="spin_Side">Pick a side!</string>
     <string name="welcomeMoney"> hello there! We have here a monetary transaction going on!</string>
     <string name="sideGreet"> I see you\'re the ...  </string>
-
     <string name="COUNTRY_LABEL"> Country   </string>
-
 
     <string-array name="tasks_array">
         <item>Select Task</item>
@@ -26,10 +27,11 @@
         <item>Requestee</item>
     </string-array>
 
-    <string name="title_activity_money">MoneyActivity</string>
+    <string name="title_activity_money">Make a Request</string>
     <string name="title_activity_money_list">MoneyListActivity</string>
     <string name="title_activity_contacts_list_fragment">ContactsListFragment</string>
-    <string name="title_activity_money_reqs">MainActivity</string>
-
+    <string name="title_activity_money_reqs">All Requests</string>
+    <string name="title_activity_money_detail">Request Details</string>
+    <string name="title_activity_complete_contact_trans">Contact Transactions</string>
 
 </resources>

@@ -1,76 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/startLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
-       
-        <EditText android:id="@+id/edit_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/phone_number" />
-        
-    <Button
-        android:id = "@+id/msg_butn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_send" 
-        android:onClick="sendMessage" />
-    
 
-
-	 
-	 </LinearLayout>
-	 
-    
-	<LinearLayout   
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+	<TextView
+	    android:id="@+id/appTitle"
+	    android:text="friendTab"
+	    android:textSize="65sp"	    
+	    android:gravity="center"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"     />
+		  
+	 <Button
+        android:id = "@+id/lender"
+     	android:text="lender"
+	    android:textSize="30sp"
+	    android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"        
+        android:onClick="listenMsg" />
 	 
 	 <Button
-        android:id = "@+id/listen_butn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_listen" 
+        android:id = "@+id/borrower"
+       	android:text="borrower"
+	    android:textSize="30sp"
+	    android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"        
         android:onClick="listenMsg" />
-	     	
-	 <TextView
-	    android:id="@+id/text"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"     />
-	 
-	 </LinearLayout>
-			<LinearLayout   
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
-
-		<TextView
-	    android:id="@+id/TextTask"
-	    android:text="What would you like"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"     />
-
-	 
-	</LinearLayout> 
-	 
+	 	 
+	 <Button
+        android:id = "@+id/seeList_butn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="see requests"
+        android:textSize="30sp" 
+        android:onClick="seeReqs" />	
 
 
-	    <Spinner
-	        android:id="@+id/t_spinner"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" />
-
-	    <Spinner
-	        android:id="@+id/p_spinner"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" />
 
 	
 	 

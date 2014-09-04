@@ -1,4 +1,4 @@
-package com.example.smstest;
+/*package com.example.smstest;
 
 
 import android.os.Bundle;
@@ -11,14 +11,13 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+
 import android.widget.*;
+
 import android.content.ContentResolver;
 import android.database.Cursor;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.ContactsContract;
-
-
 
 
 import java.math.BigDecimal;
@@ -33,7 +32,7 @@ public class MoneyActivity extends Activity {
 	public Spinner numSpinner;
 	public EditText AmountElmt;
 	public EditText DescElmt;
-	public Button	DateElmt;
+	public TextView DateElmt;
 	
 	public String transSide;
 
@@ -55,28 +54,19 @@ public class MoneyActivity extends Activity {
 		String whoru = intent.getStringExtra(StartActivity.IDENT);
 		transSide=whoru;
 		
-		Log.d("MoneyActivity",  "who r u " + transSide );
-		
-		if( transSide.equals("borrower")){
-			setContentView(R.layout.activity_money_orange);
-		}					
-		else
-			setContentView(R.layout.activity_money_green);
+		setContentView(R.layout.activity_money_orange);
 		
 		// getting all the fields that we'll need to insert records
 		AmountElmt=(EditText)findViewById(R.id.Amount_fill);
 		DescElmt=(EditText)findViewById(R.id.Desc_fill);
-		DateElmt=(Button)findViewById(R.id.Date_fill);
-		TextView TitleTrans=(TextView)findViewById(R.id.transSide);
+		DateElmt=(TextView)findViewById(R.id.Date_fill);
 		
-		//set font
-		Typeface face=Typeface.createFromAsset(getAssets(), "fonts/TREBUC.TTF");
-		TitleTrans.setTypeface(face, Typeface.NORMAL);
-		DateElmt.setTypeface(face, Typeface.NORMAL);
-		DescElmt.setTypeface(face, Typeface.NORMAL);
-		AmountElmt.setTypeface(face, Typeface.NORMAL);
-		//actv.setTypeface(face, Typeface.NORMAL);
 
+		
+		Button editDate = (Button) findViewById(R.id.DateMny_butn);
+		editDate.setBackgroundResource(R.drawable.cal);   //setting the image for the button
+		
+		 //outputText = (TextView) findViewById(R.id.Contact_SrchRes); 
 		
 
 		 actv = (AutoCompleteTextView) findViewById(R.id.autocompleteContact);
@@ -148,7 +138,7 @@ public class MoneyActivity extends Activity {
          * */
         
         //http://stackoverflow.com/questions/6330151/how-to-get-a-contacts-number-from-contact-name-in-android       
-         String selection = DISPLAY_NAME+" like'" + givename +"%'";
+       /*  String selection = DISPLAY_NAME+" like'" + givename +"%'";
          Cursor cursor = contentResolver.query(CONTACTS_CONTENT_URI,null, selection, null, DISPLAY_NAME);
         
         
@@ -170,7 +160,7 @@ public class MoneyActivity extends Activity {
                         
                         if (phoneNumber != null){
                         	
-                        	numbers.add("  "+ phoneNumber);
+                        	numbers.add(name + phoneNumber);
                         }	
                         
                         else {
@@ -341,7 +331,7 @@ public class MoneyActivity extends Activity {
 
 	*/	    
 		    
-	public List<String> getAllContactsList() {
+	/*public List<String> getAllContactsList() {
 //http://beginandroiddev.blogspot.ca/2013/04/display-contacts-in-autocompletetextview.html
 
 		    	ArrayList<String> names = new ArrayList<String>();  // array for autocompletetextview 
@@ -426,7 +416,7 @@ public class MoneyActivity extends Activity {
 		SQLiteAssistant sqlAst; 
         sqlAst = new SQLiteAssistant(MoneyActivity.this);
         //TODO: DELETE thE LINE BELOW LATER:  currently for debugging purposes so I have a fresh db every run
-       // getApplicationContext().deleteDatabase("usingsqlite.db");
+        //getApplicationContext().deleteDatabase("usingsqlite.db");
         
         sqlAst.openDB();
         
@@ -499,4 +489,4 @@ public class MoneyActivity extends Activity {
 	                                        Msgs, sentIns, deliverIns);
 	    } */
 
-}
+//}

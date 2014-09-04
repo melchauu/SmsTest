@@ -91,13 +91,16 @@ public class SQLiteAssistant extends SQLiteOpenHelper
         return this.sqliteDBInstance.update(DB_TABLE_NAME, contentValues, "country_name='" + oldCountryName + "'", null);
     }
  
-    public String[][] getAllReqs()
+    public String[][] getAllReqs(String sortBy)
     {
-        Cursor cursor = this.sqliteDBInstance.query(DB_TABLE_NAME, null, null, null, null, null, null);
+	    Log.i("sqlLiteAst", "getALLReqs");    
+	    //query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy)
+        Cursor cursor = this.sqliteDBInstance.query(DB_TABLE_NAME, null, null, null, null, null, sortBy);
+        //sortBy is a row name in the table
  
         if(cursor.getCount() >0)
         {
-            String[][] str = new String[cursor.getCount()][6];
+            String[][] str = new String[cursor.getCount()][7];
             int i = 0;
  
             while (cursor.moveToNext())
@@ -108,6 +111,42 @@ public class SQLiteAssistant extends SQLiteOpenHelper
                  str[i][3] = cursor.getString(cursor.getColumnIndex("amt"));
                  str[i][4] = cursor.getString(cursor.getColumnIndex("description"));
                  str[i][5] = cursor.getString(cursor.getColumnIndex("date_incur"));
+                 str[i][6] = cursor.getString(cursor.getColumnIndex("_id"));
+        
+                 i++;
+             }
+            return str;
+        }
+        else
+        {
+            return new String[][] {};
+        }
+    }
+    
+    public String[][] getSpecific(String selection, String orderBy)
+    {
+	    Log.i("sqlLiteAst", "getSpecific");    
+	    // if orderBy is null then we don't care about the order.
+	    //query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy)
+        //String selection = DISPLAY_NAME+" like'" + givename +"%'";
+        
+        Cursor cursor = this.sqliteDBInstance.query(DB_TABLE_NAME, null, selection, null, null, null, orderBy);
+
+
+        if(cursor.getCount() >0)
+        {
+            String[][] str = new String[cursor.getCount()][7];
+            int i = 0;
+ 
+            while (cursor.moveToNext())
+            {//contact_name, contact_num, transaction_side, amt, description, date_incr, _id 
+                 str[i][0] = cursor.getString(cursor.getColumnIndex("contact_name"));
+                 str[i][1] = cursor.getString(cursor.getColumnIndex("contact_num"));
+                 str[i][2] = cursor.getString(cursor.getColumnIndex("transaction_side"));
+                 str[i][3] = cursor.getString(cursor.getColumnIndex("amt"));
+                 str[i][4] = cursor.getString(cursor.getColumnIndex("description"));
+                 str[i][5] = cursor.getString(cursor.getColumnIndex("date_incur"));
+                 str[i][6] = cursor.getString(cursor.getColumnIndex("_id"));
         
                  i++;
              }
