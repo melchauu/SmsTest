@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -217,6 +218,8 @@ public class CompleteContactTransActivity extends Activity {
 		finalTv.setTextSize(20f);
 		finalTv.setTextColor(getResources().getColor(R.color.chocolate));
 		finalTv.setGravity(Gravity.RIGHT);
+		LinearLayout.LayoutParams paramFinTv= new LinearLayout.LayoutParams( LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT, 1.0f);
+		finalTv.setLayoutParams(paramFinTv);
 		
 		int retval = Float.compare(finalAmt, 0f); // retval > 0  -> finalAmt > 0f ... retval < 0 -->finalAmt <0f  else reval = 0 -> finalAmt = 0f 
 				
@@ -266,5 +269,18 @@ public class CompleteContactTransActivity extends Activity {
 		getMenuInflater().inflate(R.menu.complete_contact_trans, menu);
 		return true;
 	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.action_home:
+	        	Log.i(" menu", "home");
+         		Intent hometime = new Intent(getApplicationContext(), StartActivity.class);        		
+        		startActivity(hometime);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}	
 
 }

@@ -53,6 +53,18 @@
             android:name="com.example.smstest.MoneyReqsActivity"
             android:label="@string/title_activity_money_reqs" >
         </activity>
+        <activity
+            android:name="com.example.smstest.MoneyDetailActivity"
+            android:label="@string/title_activity_money_detail" >
+        </activity>
+        <activity
+            android:name="com.example.smstest.CompleteContactTransActivity"
+            android:label="@string/title_activity_complete_contact_trans" >
+        </activity>
+        <activity
+            android:name="com.example.smstest.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
     </application>
 
 </manifest>

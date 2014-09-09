@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import android.content.ContentResolver;
@@ -17,6 +18,7 @@ import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.ContactsContract;
+
 
 
 
@@ -396,6 +398,18 @@ public class MoneyActivity extends Activity {
 		return true;
 	}
 	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.action_home:
+	        	Log.i(" menu", "home");
+         		Intent hometime = new Intent(getApplicationContext(), StartActivity.class);        		
+        		startActivity(hometime);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}	
 	public void SelDate(View view){
 		
 		//Intent RespInt = new Intent(this, ResponderService.class);

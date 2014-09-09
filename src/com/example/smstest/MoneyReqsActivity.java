@@ -1,13 +1,28 @@
 package com.example.smstest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.FragmentManager;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -17,6 +32,8 @@ import android.widget.TextView;
 public class MoneyReqsActivity extends Activity {
 	
 	public final static String ROWID = "com.example.SmsTest.ROWID";
+	public final static String SQLSELECTION = "com.example.SmsTest.SQLSELECTION";
+	
 	//lesson learned: you MUST call this string above when rerunning the activity that this activity launches, if you call it multiple times
 	// you must call moneyReqsActivty.ROWID.... ( format  is  class.string ) 
 	@Override	
@@ -114,7 +131,198 @@ public class MoneyReqsActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.money_reqs, menu);
+		
+		
 		return true;
 	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.action_home:
+	        	Log.i("MoneyReqs menu", "home");
+         		Intent hometime = new Intent(getApplicationContext(), StartActivity.class);        		
+        		startActivity(hometime);
+	            return true;
+	            
+	            
+	        case R.id.action_Search:
+	        	Log.i("MoneyReqs menu", "search");
+	        	
+	        	final Dialog dialog = new Dialog(this);
+				dialog.setContentView(R.layout.dialog_search);
+				dialog.setTitle("Search for Requests");					 
+				// set the custom dialog components - text, image and button
+				 final AutoCompleteTextView actv = (AutoCompleteTextView) dialog.findViewById(R.id.autocompleteContact);
+				 ArrayAdapter<String> autotv_adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_item, R.id.tv_ContactName, getAllContactsList()); 
+		 		 actv.setAdapter(autotv_adapter);	 					 
 
+				
+				final TextView amtTv = (TextView) dialog.findViewById(R.id.Amount_fill);
+				final TextView descTv = (TextView) dialog.findViewById(R.id.Desc_fill);
+				
+				Button goBtn = (Button)dialog.findViewById(R.id.btn_go);
+				Button cancelBtn=(Button)dialog.findViewById(R.id.btn_cancel);
+				
+				cancelBtn.setOnClickListener(new OnClickListener() {@Override
+					public void onClick(View v) {
+					dialog.dismiss();
+				}});
+				
+				goBtn.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						
+						
+						String amtStr=null;
+						String amtStr_sql= "\n";
+						boolean amtInt=false;
+						amtStr= amtTv.getText().toString();
+						if (!amtStr.equals("") ){ 
+							
+							amtStr_sql=" amt = '" + amtStr + "'" ;
+							amtInt=true;
+						}
+						
+													
+						
+						
+						String descStr = null;
+						String descStr_sql= "\n";
+						boolean descInt=false;
+						descStr=descTv.getText().toString();
+							if (!descStr.equals("")  ){
+								
+								descStr_sql=" description = '" + descStr + "'" ;
+								descInt=true;
+							}	
+						
+						String acStr=null;
+						String acStr_sql= "\n";
+						boolean acInt=false;
+						acStr=actv.getText().toString();
+							if (!acStr.equals("")){
+								
+								acStr_sql = " contact_name = '" + acStr + "'" ;	
+								acInt=true;
+							}	
+						
+						// construct selection 
+							String selectionRaw = null;
+							String[] selectionFrag=null;
+							String selection = null;
+							
+							 
+							
+							if (amtInt && descInt && acInt){
+								//all fields filled yay easy 
+								selection = amtStr_sql + " AND " + descStr_sql + " AND " + acStr_sql;
+								Log.i("moneyreqsactivity", selection);
+							}
+							
+							else if (amtInt == false && descInt == false && acInt == false){
+								
+								dialog.dismiss(); // going back to all reqs
+								
+							}
+							
+							else {
+								selectionRaw = amtStr_sql + "\n" + descStr_sql + "\n" + acStr_sql;	
+								 selectionFrag=selectionRaw.split("\n");								  
+								 List<String> listFrag = new LinkedList<String>(Arrays.asList(selectionFrag));// make a linked list bc when calling Arrays.asList yout can't add or remove from this list :(
+								 int numFrags = selectionFrag.length;
+								 int newNumFrags = numFrags;
+								 String temp=null;
+								 for (int i =0; i < newNumFrags ; i++)  
+							      {  
+									 temp=listFrag.get(i);
+							         if (listFrag.get(i).equals("")||listFrag.get(i).equals(" ")){
+							        	 listFrag.remove(i);	
+							        	 newNumFrags=newNumFrags-1;
+							        	 i=i-1;
+							         }
+							      }  
+								 
+								 // add  all the strings back up
+								 selectionRaw = listFrag.get(0);
+								 for ( int i = 1 ; i< newNumFrags; i++)
+									 selectionRaw = selectionRaw + " AND " + listFrag.get(i);
+	
+
+									 selection=selectionRaw ;
+									 
+								 
+								 Log.i("moneyreqsactivity", selection);
+							}
+							
+			         		Intent search = new Intent(getApplicationContext(), SearchActivity.class);
+			        		search.putExtra(SQLSELECTION, selection);
+			        		startActivity(search);
+						
+					}});
+
+					 
+					 
+				
+					dialog.show();
+	            return true;
+	            
+
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+
+	
+
+
+
+
+public List<String> getAllContactsList() {
+	//http://beginandroiddev.blogspot.ca/2013/04/display-contacts-in-autocompletetextview.html
+
+			    	ArrayList<String> names = new ArrayList<String>();  // array for autocompletetextview 
+
+			    	
+			        Uri CONTACTS_CONTENT_URI = ContactsContract.Contacts.CONTENT_URI;		       	       
+
+
+			        // all these strings above  contactscontract.contacts.XXX is just an address for a row of where we expect the desired for XXX data to be
+			        
+			       ContentResolver contentResolver = getContentResolver();
+			        
+			        Cursor cursor = contentResolver.query(CONTACTS_CONTENT_URI,null, null, null, null);
+			        
+			        // look in the contact_content (table) specifically and look for something that has display_name like givename 
+			        
+			        if ( cursor.getCount() > 0 ) {
+			        		
+			            while ( cursor.moveToNext() ) {
+
+			                //String contact_id = cursor.getString(cursor.getColumnIndex( _ID ));
+			                String name = cursor.getString(cursor.getColumnIndex( ContactsContract.Contacts.DISPLAY_NAME ));
+
+			                
+
+
+			                 
+			                    names.add( name);
+			                   
+
+			                   
+		  		                names.add("\n");
+		  		               
+			
+			            }
+
+			            
+			        }
+			        
+			        
+
+			        
+			        return names;
+			        
+			    }
 }
+

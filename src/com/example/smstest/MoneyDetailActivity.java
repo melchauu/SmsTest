@@ -2,11 +2,13 @@ package com.example.smstest;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,8 @@ public class MoneyDetailActivity extends Activity {
 	public final static String SPECIFIC_CONTACT_NAME = "com.example.SmsTest.SPECIFIC_CONTACT_NAME";
 	public String finalAmtStr;
 	public String nameToSend;
+	
+	public String row;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +52,7 @@ public class MoneyDetailActivity extends Activity {
 		Typeface face=Typeface.createFromAsset(getAssets(), "fonts/TREBUC.TTF");
 		
 	    Intent intent = getIntent();
-	    String row = intent.getStringExtra(MoneyReqsActivity.ROWID);
+	     row = intent.getStringExtra(MoneyReqsActivity.ROWID);
 		    
 		
 	    
@@ -187,8 +191,23 @@ public class MoneyDetailActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.money_detail, menu);
 		return true;
+		
+		
+		
 	}
-	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.action_home:
+	        	Log.i(" menu", "home");
+         		Intent hometime = new Intent(getApplicationContext(), StartActivity.class);        		
+        		startActivity(hometime);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}	            
+	            
 	public void contactFullTrans(View view){
  		Intent getFull = new Intent(getApplicationContext(), CompleteContactTransActivity.class);
 		getFull.putExtra(ISTOTALLED, "1");
@@ -200,5 +219,27 @@ public class MoneyDetailActivity extends Activity {
 		startActivity(getFull);
 	}
 	
+	public void paidDialog(View view){
+		FragmentManager fm = getFragmentManager();	
+		PaidDialogFragment paid = new PaidDialogFragment();
+		Bundle args = new Bundle();
+		args.putInt("rowID", Integer.parseInt(row));		
+		paid.setArguments(args);
+		paid.show(fm, "It's Paid!");
+		
+		
+	}
+	
+	
+	public void delDialog(View view){
+		FragmentManager fm = getFragmentManager();	
+		delDialogFragment paid = new delDialogFragment();
+		Bundle args = new Bundle();
+		args.putInt("rowID", Integer.parseInt(row));		
+		paid.setArguments(args);
+		paid.show(fm, "Delete!");
+		
+		
+	}
 
 }

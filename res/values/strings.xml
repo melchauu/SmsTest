@@ -4,8 +4,8 @@
     <string name="app_name">SmsTest</string>
     <string name="action_settings">Settings</string>
     <string name="dialog_paythis">This Request has been Paid</string>
-    <string name="dialog_yes">yes</string>
-    <string name="dialog_no">no</string>
+    <string name="dialog_confirm">confirm</string>
+    <string name="dialog_cancel">cancel</string>
     <string name="hello_world">Hello world!</string>
     <string name="phone_number">Recipient Number</string>
     <string name="button_send">Txt Them</string>
@@ -33,5 +33,6 @@
     <string name="title_activity_money_reqs">All Requests</string>
     <string name="title_activity_money_detail">Request Details</string>
     <string name="title_activity_complete_contact_trans">Contact Transactions</string>
+    <string name="title_activity_search">Search Results</string>
 
 </resources>

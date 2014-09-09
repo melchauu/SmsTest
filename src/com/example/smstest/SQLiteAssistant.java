@@ -76,7 +76,7 @@ public class SQLiteAssistant extends SQLiteOpenHelper
  
     public boolean removeReq(String Req)
     {
-        int result = this.sqliteDBInstance.delete(DB_TABLE_NAME, "country_name='" + Req + "'", null);
+        int result = this.sqliteDBInstance.delete(DB_TABLE_NAME, "_id='" + Req + "'", null);
  
         if(result > 0)
             return true;

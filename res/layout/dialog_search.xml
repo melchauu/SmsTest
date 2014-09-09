@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    
+
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/holo_blue"/>
+    
+	  <EditText
+	     android:id="@+id/Amount_fill"
+	     android:layout_width="match_parent"
+	     android:layout_height="wrap_content"	   
+	     android:inputType="numberDecimal"  
+	     android:padding="10sp"
+	     android:textSize="20sp"
+	     android:hint="amount"
+	         />
+	  
+	  <EditText 
+	   	 android:id="@+id/Desc_fill"
+	     android:layout_width="match_parent"
+	     android:layout_height="wrap_content"
+	     android:inputType="textAutoCorrect"
+	   	 android:padding="10sp"
+	     android:textSize="20sp"
+	     android:hint="description"  />
+ 
+ 
+	     
+	  <AutoCompleteTextView
+	    android:id="@+id/autocompleteContact"
+		android:hint="contact name"	
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="20sp"
+		android:layout_marginTop="12dp"
+		android:layout_marginLeft="0dp"/>
+	  
+	  	<LinearLayout        
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:baselineAligned="false"
+    >
+	  
+	  	 	<LinearLayout        
+	    android:orientation="vertical"
+	    android:layout_width="0dp"
+	    android:layout_height="wrap_content"
+	    android:paddingRight="2dp"
+	    android:layout_weight="1"
+	    >
+				 <Button 
+	 	          android:id="@+id/btn_go"
+	 	          
+			      android:layout_width="match_parent"
+			      android:layout_height="wrap_content"
+			      android:text="go"
+			      android:background="@drawable/gray_border_thin"			     
+			       />
+
+
+	    
+	 	</LinearLayout>
+    
+	 	<LinearLayout        
+	    android:orientation="vertical"
+	    android:layout_width="0dp"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="2dp"
+	    android:layout_weight="1"
+	    >
+      
+	 	      	  <Button 
+	 	          android:id="@+id/btn_cancel"
+	 	          
+			      android:layout_width="match_parent"
+			      android:layout_height="wrap_content"
+			      android:text="cancel"
+				  android:background="@drawable/gray_border_thin"
+			       />  	   		        	    
+	
+		      	      
+		 </LinearLayout>   
+ 		
+ 		
+ 		
+ 	</LinearLayout>
+ 	
+	   
+</LinearLayout>
